@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# Git
+.git/
+
+# Training outputs
+results/
+
+# Python cache
+.pytest_cache/
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
