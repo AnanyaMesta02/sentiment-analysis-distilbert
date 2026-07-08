@@ -221,7 +221,7 @@ Backend
 
 ### Prediction Example
 
-<img width="900" alt="Prediction" src="images/PREDICTION RESPONSE .png">
+<img width="900" alt="Prediction" src="images/PREDICTION RESPONSE.png">
 
 *(Replace these with your own screenshots after creating an `images/` folder.)*
 
