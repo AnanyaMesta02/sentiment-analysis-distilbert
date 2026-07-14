@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.schemas import ReviewRequest, PredictionResponse
 from app.predictor import predict_sentiment
+from fastapi import FastAPI, HTTPException
 
 app = FastAPI(
     title="Sentiment Analysis API",

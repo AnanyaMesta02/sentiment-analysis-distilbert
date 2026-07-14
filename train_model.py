@@ -7,6 +7,8 @@ from transformers import (
 )
 import evaluate
 import numpy as np
+import mlflow
+import mlflow.transformers
 
 # ==========================================
 # Load IMDb Dataset
@@ -144,7 +146,48 @@ trainer = Trainer(
 
 print("\nTraining Started...\n")
 
-trainer.train()
+# ==========================================
+# MLflow
+# ==========================================
+
+mlflow.set_experiment("Sentiment Analysis DistilBERT")
+
+with mlflow.start_run():
+
+    # Log Parameters
+    mlflow.log_param("model", "distilbert-base-uncased")
+    mlflow.log_param("learning_rate", 2e-5)
+    mlflow.log_param("epochs", 2)
+    mlflow.log_param("batch_size", 16)
+    mlflow.log_param("max_length", 256)
+
+    print("\nTraining Started...\n")
+
+    trainer.train()
+
+    print("\nTraining Completed!\n")
+
+    results = trainer.evaluate()
+
+    print(results)
+
+    # Log Metrics
+    mlflow.log_metric("accuracy", results["eval_accuracy"])
+    mlflow.log_metric("loss", results["eval_loss"])
+
+    # Save model locally
+    trainer.save_model("./model")
+    tokenizer.save_pretrained("./model")
+    # Log the trained model to MLflow
+    mlflow.transformers.log_model(
+    transformers_model={
+        "model": model,
+        "tokenizer": tokenizer,
+    },
+    artifact_path="model"
+)
+    print("Model Saved Successfully!")
+   
 
 print("\nTraining Completed!\n")
 
@@ -152,7 +195,7 @@ print("\nTraining Completed!\n")
 # Evaluate
 # ==========================================
 
-results = trainer.evaluate()
+
 
 print("\nEvaluation Results")
 
@@ -162,9 +205,7 @@ print(results)
 # Save Model
 # ==========================================
 
-trainer.save_model("./model")
 
-tokenizer.save_pretrained("./model")
 
 print("\nModel Saved Successfully!")
 
