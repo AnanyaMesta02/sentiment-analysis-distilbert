@@ -1,86 +1,151 @@
 # 🚀 Sentiment Analysis & Review Intelligence
 
-A production-ready **Sentiment Analysis API** built using **DistilBERT**, **FastAPI**, and **Docker**. The model is fine-tuned on the IMDb movie reviews dataset to classify reviews as **Positive** or **Negative**.
+A production-ready REST API for sentiment analysis built using **DistilBERT, FastAPI, Docker, Hugging Face Transformers**, and **deployed on Railway**.
+
+The model is fine-tuned on the **IMDb Movie Reviews** dataset to classify reviews as **Positive** or **Negative**.
 
 ---
 
-## 📌 Project Overview
+## 🌐 Live Demo
+
+**Railway Deployment**
+
+https://sentiment-analysis-distilbert-production.up.railway.app
+
+---
+
+## 📄 API Documentation
+
+Interactive Swagger UI
+
+https://sentiment-analysis-distilbert-production.up.railway.app/docs
+
+---
+
+## 🤗 Hugging Face Model
+
+https://huggingface.co/Ananya02/sentiment-analysis-distilbert
+
+The deployed API downloads the trained DistilBERT model directly from the Hugging Face Hub during startup, keeping the GitHub repository lightweight while ensuring the latest model is always available.
+
+---
+
+# 📌 Project Overview
 
 This project demonstrates an end-to-end Natural Language Processing (NLP) workflow:
 
 - Fine-tuning a pre-trained DistilBERT model
 - Building a REST API using FastAPI
-- Containerizing the application with Docker
+- Containerizing the application using Docker
+- Hosting the trained model on Hugging Face Hub
+- Deploying the API publicly using Railway
 - Testing through Swagger UI
-- Preparing the project for cloud deployment
 
 ---
 
-## ✨ Features
+# ✨ Features
 
 - Binary Sentiment Classification
 - Fine-tuned DistilBERT Model
-- REST API with FastAPI
+- FastAPI REST API
 - Interactive Swagger Documentation
-- Docker Support
+- Dockerized Application
+- Hugging Face Model Hosting
+- Railway Cloud Deployment
 - Clean Project Structure
-- Ready for Cloud Deployment
 
 ---
 
-## 🛠 Tech Stack
+# 🛠 Tech Stack
 
-### Programming Language
+## Programming Language
+
 - Python
 
-### Machine Learning
-- Hugging Face Transformers
+## Machine Learning
+
 - DistilBERT
+- Hugging Face Transformers
 - PyTorch
 
-### Backend
+## Backend
+
 - FastAPI
 - Uvicorn
 
-### Tools
+## Deployment
+
 - Docker
+- Railway
+- Hugging Face Hub
+
+## Version Control
+
 - Git
 - GitHub
+
+## Development
+
 - VS Code
 
-### Dataset
+## Dataset
+
 - IMDb Movie Reviews Dataset
 
 ---
 
-## 📂 Project Structure
+# 🏗 System Architecture
 
+```text
+                User
+                  │
+                  ▼
+         Railway Deployment
+                  │
+                  ▼
+             FastAPI API
+                  │
+                  ▼
+     DistilBERT Sentiment Model
+                  │
+                  ▼
+      Positive / Negative Prediction
 ```
+
+---
+
+# 📂 Project Structure
+
+```text
 sentiment-analysis-distilbert/
 │
 ├── app/
 │   ├── __init__.py
 │   ├── main.py
-│   ├── predictor.py
 │   ├── model_loader.py
+│   ├── predictor.py
 │   └── schemas.py
 │
 ├── model/
 │
-├── train.py
-├── train_model.py
+├── images/
+│   ├── SWAGGER UI.png
+│   └── PREDICTION RESPONSE.png
+│
 ├── requirements.txt
 ├── Dockerfile
 ├── .gitignore
 ├── README.md
-└── test_model.py
+├── train_model.py
+├── test_model.py
+└── tokenizer_demo.py
 ```
 
 ---
 
-## ⚙ Installation
+# ⚙ Installation
 
-### Clone Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/AnanyaMesta02/sentiment-analysis-distilbert.git
@@ -90,27 +155,25 @@ cd sentiment-analysis-distilbert
 
 ---
 
-### Create Virtual Environment
-
-```bash
-python -m venv venv
-```
+## Create Virtual Environment
 
 Windows
 
 ```bash
+python -m venv venv
 venv\Scripts\activate
 ```
 
-Linux / Mac
+Linux / macOS
 
 ```bash
+python3 -m venv venv
 source venv/bin/activate
 ```
 
 ---
 
-### Install Dependencies
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -118,70 +181,68 @@ pip install -r requirements.txt
 
 ---
 
-## 🎯 Train the Model
+# 🎯 Train the Model
 
 ```bash
 python train_model.py
 ```
 
-The trained model will be saved inside the **model/** folder.
+The trained model will be saved in the **model/** folder.
 
 ---
 
-## ▶ Run the API
+# ▶ Run the API
 
 ```bash
 python -m uvicorn app.main:app --reload
 ```
 
-Open
+Open:
 
 ```
 http://127.0.0.1:8000/docs
 ```
 
-Swagger UI will appear.
-
 ---
 
-## 📌 API Endpoint
+# 📌 API Endpoint
 
-### POST `/predict`
+## POST `/predict`
 
-Request
+### Request
 
 ```json
 {
-  "text": "This movie was absolutely amazing!"
+    "text": "This movie was absolutely amazing!"
 }
 ```
 
-Response
+### Response
 
 ```json
 {
-  "prediction": "Positive",
-  "confidence": 0.9987
+    "prediction": "Positive",
+    "confidence": 0.9006
 }
 ```
 
 ---
 
-## 🐳 Docker
+# 🐳 Docker
 
-### Build Image
+## Build Docker Image
 
 ```bash
 docker build -t sentiment-api .
 ```
 
-### Run Container
+## Run Docker Container
 
 ```bash
 docker run -p 8000:8000 sentiment-api
 ```
 
-Open
+Open:
 
 ```
 http://localhost:8000/docs
@@ -189,68 +250,66 @@ http://localhost:8000/docs
 
 ---
 
-## 📊 Model Information
+# 📊 Model Information
 
-Model
-
-- DistilBERT
-
-Task
-
-- Binary Sentiment Classification
-
-Dataset
-
-- IMDb Movie Reviews
-
-Framework
-
-- Hugging Face Transformers
-
-Backend
-
-- PyTorch
+| Property | Value |
+|----------|-------|
+| Model | DistilBERT |
+| Task | Binary Sentiment Classification |
+| Dataset | IMDb Movie Reviews |
+| Framework | Hugging Face Transformers |
+| Backend | PyTorch |
 
 ---
 
-## 📷 Demo
+# 📷 Demo
 
-### Swagger UI
+## Swagger UI
 
-<img width="900" alt="Swagger UI" src="images/SWAGGER UI.png">
-
-### Prediction Example
-
-<img width="900" alt="Prediction" src="images/PREDICTION RESPONSE.png">
-
-*(Replace these with your own screenshots after creating an `images/` folder.)*
+![Swagger UI](images/SWAGGER%20UI.png)
 
 ---
 
-## 🚀 Future Improvements
+## Prediction Example
 
-- Deploy on AWS Elastic Beanstalk
-- Deploy on Hugging Face Spaces
-- Upload model to Hugging Face Hub
-- Batch Prediction API
-- Authentication using JWT
-- Logging and Monitoring
-- CI/CD using GitHub Actions
+![Prediction Response](images/PREDICTION%20RESPONSE.png)
 
 ---
 
-## 👩‍💻 Author
+# 🚀 Deployment Status
+
+- ✅ Status: Live
+- 🌐 Platform: Railway
+- 🤗 Model Hosting: Hugging Face Hub
+- 🐳 Dockerized
+- 📄 Swagger Documentation Available
+
+---
+
+# 🔮 Future Improvements
+
+- Multi-class sentiment classification
+- Batch prediction API
+- JWT Authentication
+- Request logging
+- Monitoring and analytics
+- CI/CD with GitHub Actions
+- Model versioning
+
+---
+
+# 👩‍💻 Author
 
 **Ananya Mesta**
 
-GitHub
+### GitHub
 
 https://github.com/AnanyaMesta02
 
-LinkedIn
+### LinkedIn
 
 https://www.linkedin.com/in/ananyamesta/
 
 ---
 
-## ⭐ If you found this project useful, consider giving it a star!
+⭐ **If you found this project useful, consider giving it a star!**
